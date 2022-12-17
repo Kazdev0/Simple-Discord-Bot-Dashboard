@@ -1,0 +1,30 @@
+
+<%- include('../parts/navbar') %>
+<% user.guilds.forEach(guild => {  %>
+    <% const permsOnGuild = new Perms(guild.permissions_new) %>
+    <% if(!permsOnGuild.has(flag.ManageGuild)) return; %>
+    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 ">
+        <div class="flex flex-col items-center pb-10 width-200">
+            <% if(!guild.icon) {%>
+                <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://i.imgur.com/aGBoiQh.png">
+                <% } else { %>
+            <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://cdn.discordapp.com/icons/<%= guild.id %>/<%= guild.icon %>"/>
+            <% } %>
+            <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><%= guild.name %></h5>
+            <div class="flex mt-4 space-x-3 md:mt-6">
+                <% if(!bot.guilds.cache.has(guild.id)){ %>
+                <a href="https://discord.com/api/oauth2/authorize?client_id=<%- bot.user.id %>&permissions=8&scope=bot" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Bot</a>
+                <% } else {%>
+                <a href="/dashboard/<%= guild.id %>" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Dashboard</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+<% }); %>
+
+
+
+
+
+
+<%- include('../parts/footer')%>

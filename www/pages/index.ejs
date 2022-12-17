@@ -1,0 +1,35 @@
+<%- include('../parts/navbar') %>
+
+<div id="bot-stats">
+    <div class="bot-stats">
+        <label for="">Guilds &nbsp; </label>
+        <p><%- bot.guilds.cache.size %></p>
+    
+    </div>
+        <div class="bot-stats">
+        <label for="">Channels &nbsp;</label>
+        <p><%- bot.channels.cache.size %></p>
+    </div>
+
+    <div class="bot-stats">
+        <label for="">Users &nbsp;</label>
+        <p><%- bot.users.cache.size %></p>
+    </div>
+    
+    <div class="bot-stats">
+        <label for="">Emojis&nbsp; </label>
+        <p><%- bot.emojis.cache.size %></p>
+    </div>
+</div>
+</body>
+<%- include("../parts/footer") %></html>
+<style>
+    #bot-stats {
+        display: flex;
+        background: rgb(54,57,62);
+        color:white;
+    }
+    #bot-stats .bot-stats {
+        background: rgb(40,43,48);
+    }
+</style>

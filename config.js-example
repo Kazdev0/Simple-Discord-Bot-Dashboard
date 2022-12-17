@@ -1,0 +1,14 @@
+module.exports = {
+    bot:{
+        token:'',
+        clientID:'',
+        clientSecret:'',
+        callbackURL: 'http://localhost:3000/discord/callback'
+    },
+    database:{
+        url:''
+    },
+    http:{
+        port:3000
+    }
+}
