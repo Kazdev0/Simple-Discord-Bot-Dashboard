@@ -1,10 +1,10 @@
 <%- include('../parts/navbar')%>
 
-<form>
+<form method="post">
     <div class="mb-6">
       
     <div class="mb-6">
-      <label for="prefix" style='text-align:center;' class="block mb-2 text-sm font-bold text-4xl text-gray-900 dark:text-white">Prefix</label>
+      <label for="prefix" style='text-align:center;' class="block mb-2 text-sm font-bold text-4xl text-gray-900 dark:text-white">Prefix: <%- server.prefix %></label>
       <input type="text" id="prefix" name='prefix' class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" minlength="1" required>
     </div>
 
