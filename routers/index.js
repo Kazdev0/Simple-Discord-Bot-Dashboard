@@ -11,8 +11,9 @@ function Home(client = null) {
     router.get('/guilds', ensureAuthenticated, (req, res) => {
         res.render('pages/guilds', {user: req.user, bot:client, Perms: PermissionsBitField, flag: PermissionFlagsBits})
     })
-    router.get('/dashboard/:id', ensureAuthenticated, (req, res) => {
-        res.render('pages/dashboard', {user: req.user})
+    router.get('/dashboard/:id', ensureAuthenticated, async (req, res) => {
+        const server = await guild.findOne({id : req.params.id})
+        res.render('pages/dashboard', {user: req.user, server:server})
     }) 
     router.post('/dashboard/:id', ensureAuthenticated, async (req, res) => {
         try {
