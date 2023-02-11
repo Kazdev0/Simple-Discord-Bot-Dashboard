@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Events, EmbedBuilder, Collection, PermissionsBitField, PermissionFlagsBits } = require('discord.js')
+const { Client, GatewayIntentBits, Events, Collection } = require('discord.js')
 const config = require('./config')
 const client = new Client({
     intents:[GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages, GatewayIntentBits.Guilds]
@@ -13,7 +13,6 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const passport = require('passport')
-
 const guildSchema = require('./Models/guild');
 
 
@@ -55,9 +54,10 @@ client.on(Events.MessageCreate, async (message) => {
 client.on(Events.GuildCreate, async (guild) => {
     const newGuild = await guildSchema.create({id:guild.id});
     newGuild.save();
-    console.log("Sunucuya Eklendi")
 });
-
+client.on(Events.GuildDelete, async (guild) => {
+    await guildSchema.findOneAndDelete({id: guild.id})  
+})
 
 client.login(config.bot.token)
 
@@ -86,7 +86,7 @@ app.get("/login", passport.authenticate("discord"));
 app.get('/auth/discord/callback', passport.authenticate('discord', {
     failureRedirect: '/login'
 }), function(req, res) {
-    res.redirect('/') // Successful auth
+    res.redirect('/guilds') // Successful auth
 });
 
 const {Home} = require('./routers/index');

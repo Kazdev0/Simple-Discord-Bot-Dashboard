@@ -3,7 +3,8 @@ module.exports = {
         token:'',
         clientID:'',
         clientSecret:'',
-        callbackURL: 'http://localhost:3000/discord/callback'
+        callbackURL: 'http://localhost:3000/auth/discord/callback',
+        adminIDs:['']// İleride ki güncellemelerin konusu
     },
     database:{
         url:''
